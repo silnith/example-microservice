@@ -1,6 +1,7 @@
 package org.silnith.example.microservice.jaxrs;
 
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -23,6 +24,8 @@ import org.springframework.stereotype.Controller;
 @Produces({"application/json", "application/xml"})
 public class TransactionController {
     
+    private final Logger logger = Logger.getLogger(TransactionController.class.getName());
+    
     private final DataProvider dataProvider;
 
     @Inject
@@ -43,6 +46,8 @@ public class TransactionController {
     @GET
     @Path("{transactionId}")
     public TransactionDetails getTransactionDetails(@PathParam("transactionId") @NotNull final String id) throws SQLException {
+        logger.entering(TransactionController.class.getName(), "getTransactionDetails", id);
+        
         return dataProvider.getTransactionDetails(id);
     }
     
