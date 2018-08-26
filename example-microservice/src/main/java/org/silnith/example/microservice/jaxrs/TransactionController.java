@@ -5,10 +5,12 @@ import java.sql.SQLException;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 
 import org.silnith.example.microservice.data.DataProvider;
 import org.silnith.example.microservice.model.TransactionDetails;
@@ -17,6 +19,8 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 @Path("transaction")
+@Consumes({"application/json", "application/xml"})
+@Produces({"application/json", "application/xml"})
 public class TransactionController {
     
     private final DataProvider dataProvider;

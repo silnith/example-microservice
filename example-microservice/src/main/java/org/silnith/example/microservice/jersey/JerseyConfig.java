@@ -1,8 +1,14 @@
 package org.silnith.example.microservice.jersey;
 
-import javax.ws.rs.core.Application;
+import org.glassfish.jersey.server.ResourceConfig;
+import org.silnith.example.microservice.jaxrs.TransactionController;
+import org.springframework.stereotype.Component;
 
+@Component
+public class JerseyConfig extends ResourceConfig {
 
-public class JerseyConfig extends Application {
+    public JerseyConfig() {
+        super(TransactionController.class);
+    }
 
 }
