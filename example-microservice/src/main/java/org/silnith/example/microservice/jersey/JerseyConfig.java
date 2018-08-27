@@ -7,7 +7,7 @@ import org.silnith.example.microservice.jaxrs.TransactionController;
 import org.springframework.stereotype.Component;
 
 @Component
-@ApplicationPath("/")
+@ApplicationPath("api")
 public class JerseyConfig extends ResourceConfig {
 
     public JerseyConfig() {
