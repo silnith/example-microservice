@@ -3,18 +3,35 @@ package org.silnith.example.microservice.model;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+
 public class TransactionRequest {
     
-    private final String domain;
+    private String domain;
     
-    private final String region;
+    private String region;
     
-    private final int count;
+    private int count;
+    
+    public TransactionRequest() {
+        super();
+    }
     
     public TransactionRequest(@NotNull final String domain, @NotNull final String region, @Min(0) final int count) {
-        super();
+        this();
         this.domain = domain;
         this.region = region;
+        this.count = count;
+    }
+    
+    public void setDomain(@NotNull final String domain) {
+        this.domain = domain;
+    }
+    
+    public void setRegion(@NotNull final String region) {
+        this.region = region;
+    }
+    
+    public void setCount(@Min(0) final int count) {
         this.count = count;
     }
     
@@ -22,7 +39,7 @@ public class TransactionRequest {
     public String getDomain() {
         return domain;
     }
-
+    
     @NotNull
     public String getRegion() {
         return region;
@@ -32,5 +49,5 @@ public class TransactionRequest {
     public int getCount() {
         return count;
     }
-
+    
 }
