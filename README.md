@@ -15,6 +15,8 @@ There are a variety of tools being integrated in this example.
     * using out-of-the-box tools such as Spring Actuator
 * JAX-RS
 * JSON-B
+* OpenAPI
+  * embedded Swagger UI
 * Maven
   * useful standard plugins
     * Enforcer plugin
@@ -36,7 +38,7 @@ in it, ensuring fully reproducible builds and stable artifacts.  The toolchain
 plugin makes it easy to use later versions of the JDK safely while still
 maintaining a previous version as the minimum requirement.
 
-And the integration test phase is one of the most useful aspects of the Maven
+The integration test phase is one of the most useful aspects of the Maven
 tool.  Pretty much any test that normally is done manually can be automated using
 this, since it stands up a full servlet container and SQL database and loads the
 service just like would happen in a real deployment.  But the integration test
