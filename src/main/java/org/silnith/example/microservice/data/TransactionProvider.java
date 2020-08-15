@@ -23,9 +23,9 @@ import org.springframework.stereotype.Repository;
  * Repository for persisting and querying transactions.
  */
 @Repository
-public class DataProvider {
+public class TransactionProvider {
     
-    private static final String sourceClass = DataProvider.class.getName();
+    private static final String sourceClass = TransactionProvider.class.getName();
 
     private final Logger logger;
 
@@ -34,12 +34,12 @@ public class DataProvider {
     private final SQLExceptionTranslator exceptionTranslator;
 
     /**
-     * Creates a new data provider.
+     * Creates a new transaction provider.
      * 
      * @param dataSource the data source
      * @param exceptionTranslator an exception translator
      */
-    public DataProvider(@NotNull final DataSource dataSource, @NotNull final SQLExceptionTranslator exceptionTranslator) {
+    public TransactionProvider(@NotNull final DataSource dataSource, @NotNull final SQLExceptionTranslator exceptionTranslator) {
         super();
         this.logger = Logger.getLogger(sourceClass);
         this.dataSource = dataSource;
@@ -47,12 +47,12 @@ public class DataProvider {
     }
     
     /**
-     * Creates a new data provider.
+     * Creates a new transaction provider.
      * 
      * @param jdbcTemplate the JDBC template
      */
     @Inject
-    public DataProvider(@NotNull final JdbcTemplate jdbcTemplate) {
+    public TransactionProvider(@NotNull final JdbcTemplate jdbcTemplate) {
         this(jdbcTemplate.getDataSource(), jdbcTemplate.getExceptionTranslator());
     }
 

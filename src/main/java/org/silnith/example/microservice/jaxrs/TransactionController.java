@@ -15,7 +15,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
-import org.silnith.example.microservice.data.DataProvider;
+import org.silnith.example.microservice.data.TransactionProvider;
 import org.silnith.example.microservice.model.TransactionDetails;
 import org.silnith.example.microservice.model.TransactionRequest;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -37,10 +37,10 @@ public class TransactionController {
 
     private final Logger logger;
     
-    private final DataProvider dataProvider;
+    private final TransactionProvider dataProvider;
 
     @Inject
-    public TransactionController(@NotNull final DataProvider dataProvider) {
+    public TransactionController(@NotNull final TransactionProvider dataProvider) {
         super();
         this.logger = Logger.getLogger(sourceClass);
         this.dataProvider = dataProvider;

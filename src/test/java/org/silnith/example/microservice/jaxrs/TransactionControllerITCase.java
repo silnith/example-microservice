@@ -9,7 +9,7 @@ import javax.inject.Inject;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.silnith.example.microservice.data.DataProvider;
+import org.silnith.example.microservice.data.TransactionProvider;
 import org.silnith.example.microservice.model.TransactionDetails;
 import org.silnith.example.microservice.model.TransactionRequest;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,7 +29,7 @@ public class TransactionControllerITCase {
     private TestRestTemplate restTemplate;
     
     @Inject
-    private DataProvider dataProvider;
+    private TransactionProvider dataProvider;
     
     @Test
     public void testCreateTransaction() {

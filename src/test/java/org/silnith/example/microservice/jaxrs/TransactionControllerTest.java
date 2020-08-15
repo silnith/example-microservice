@@ -11,7 +11,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.silnith.example.microservice.data.DataProvider;
+import org.silnith.example.microservice.data.TransactionProvider;
 import org.silnith.example.microservice.model.TransactionDetails;
 import org.silnith.example.microservice.model.TransactionRequest;
 
@@ -19,7 +19,7 @@ import org.silnith.example.microservice.model.TransactionRequest;
 public class TransactionControllerTest {
     
     @Mock
-    private DataProvider dataProvider;
+    private TransactionProvider dataProvider;
     
     private TransactionController controller;
     
