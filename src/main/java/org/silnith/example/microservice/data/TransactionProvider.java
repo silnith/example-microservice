@@ -21,6 +21,21 @@ import org.springframework.stereotype.Repository;
 
 /**
  * Repository for persisting and querying transactions.
+ * 
+ * <p>The {@link DataSource} and {@link JdbcTemplate} dependencies are automatically created
+ * by the auto-configuration included in the {@code org.springframework.boot:spring-boot-starter-jdbc} Maven dependency.
+ * The addition of an embedded database such as {@code derby} or {@code h2} is detected by the Spring Boot
+ * auto-configuration and an appropriate database is started and stopped for the integration tests.
+ * This database is initialized by the {@code schema.sql} and {@code data.sql} scripts included as Java resources.
+ * 
+ * <p>The scripts can be customized to various database vendors using the {@code spring.datasource.platform} property,
+ * which maps to the resource name suffix.  (e.g. {@code derby} means {@code schema-derby.sql} will be used instead of
+ * {@code schema.sql}, if it exists.
+ * 
+ * <p>The {@code NotNull} annotations are processed by interceptors that are created when the
+ * {@code org.springframework.boot:spring-boot-starter-validation} Maven dependency is loaded.
+ * This requires a Java Validation API implementation, such as {@code org.hibernate.validator:hibernate-validator}
+ * to also be loaded.
  */
 @Repository
 public class TransactionProvider {

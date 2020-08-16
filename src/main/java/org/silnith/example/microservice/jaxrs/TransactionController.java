@@ -27,7 +27,12 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
-
+/**
+ * JAX-RS controller for transaction-related functionality.
+ * 
+ * <p>The controller itself is detected by the package scanning configured in the JAX-RS
+ * configuration class, {@link org.silnith.example.microservice.jersey.JerseyConfig}.
+ */
 @Path("transaction")
 @Consumes({"application/json", "application/xml"})
 @Produces({"application/json", "application/xml"})
@@ -39,13 +44,26 @@ public class TransactionController {
     
     private final TransactionProvider dataProvider;
 
+    /**
+     * Creates a new transaction controller.
+     * 
+     * @param transactionProvider a transaction repository
+     */
     @Inject
-    public TransactionController(@NotNull final TransactionProvider dataProvider) {
+    public TransactionController(@NotNull final TransactionProvider transactionProvider) {
         super();
         this.logger = Logger.getLogger(sourceClass);
-        this.dataProvider = dataProvider;
+        this.dataProvider = transactionProvider;
     }
     
+    /**
+     * Creates a new transaction.
+     * 
+     * @param id the unique identifier for the transaction
+     * @param request the details for the transaction
+     * @return a success or failure response
+     * @throws SQLException if there was a problem communicating with the database
+     */
     @Operation(
             summary = "Creates a new transaction.",
             description = "Creates a new transaction record in the database.  This operation is idempotent.",
@@ -96,7 +114,7 @@ public class TransactionController {
      * 
      * @param id the transaction identifier
      * @return the transaction, or a 404 response
-     * @throws SQLException
+     * @throws SQLException if there was a problem communicating with the database
      */
     @Operation(
             summary = "Retrieves a transaction record.",

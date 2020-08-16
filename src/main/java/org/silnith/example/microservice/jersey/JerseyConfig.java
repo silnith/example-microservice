@@ -14,13 +14,31 @@ import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
  * 
  * <p>It is crucial that this is annotated with {@link Configuration} and not {@link org.springframework.stereotype.Component}.
  * Otherwise the JAX-RS subsystem will not be initialized properly.
+ * 
+ * <p>There are actually two DI containers in the application, Spring and JAX-RS.  The Spring-Jersey
+ * integration makes all of the Spring beans available to the JAX-RS container, so JAX-RS resources
+ * can have Spring resources injected into them.
  */
 @Configuration
 @ApplicationPath("api")
 public class JerseyConfig extends ResourceConfig {
 
     public JerseyConfig() {
-        super(OpenApiResource.class);
+        super();
+        /*
+         * This registers the OpenAPI components so that the OpenAPI document is automatically
+         * generated and exposed as an endpoint.
+         */
+        registerClasses(OpenApiResource.class);
+        /*
+         * This configures the JAX-RS implementation to perform package scanning to find all available
+         * JAX-RS resources, including controllers, filters, and type converters.
+         * Note that the JAX-RS dependency registration and instantiation is distinct from the
+         * Spring container.  This is why the controller does not need to be annotated as a
+         * Spring bean.  However, because of the Spring-Jersey integration, Spring beans are still
+         * available to be injected into JAX-RS resources.  This is why the
+         * TransactionController can have a TransactionProvider injected into it.
+         */
         packages(Microservice.class.getPackage().getName());
         
         property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);

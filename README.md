@@ -71,3 +71,55 @@ Visit [http://localhost:8080/webjars/swagger-ui/index.html?url=http://localhost:
 
 This is a Spring Boot service, so it can be run as a stand-alone application or
 as a Java servlet.
+
+## Dependencies
+
+Here are the dependencies needed for each particular feature to function.
+
+### JAX-RS
+
+This uses a JAX-RS implementation for HTTP support.  This example uses Jersey.
+
+* `javax.inject:javax.inject`
+* `org.springframework.boot:spring-boot-starter-jersey`
+* `org.springframework.boot:spring-boot-starter-web`
+
+### JSON-B
+
+This uses a JSON-B implementation for all JSON serialization and deserialization.
+This example uses Apache Johnzon.
+
+* `javax.json.bind:javax.json.bind-api`
+* `org.apache.johnzon:johnzon-jaxrs`
+* `org.springframework.boot:spring-boot-starter-json` (implicit via transitive)
+
+### JDBC
+
+This provides JDBC database support, which includes the embedded database for
+integration testing.
+
+* `org.springframework.boot:spring-boot-starter-jdbc`
+* `org.apache.derby:derby`
+
+### OpenAPI
+
+This provides OpenAPI support, specifically the generated endpoints
+[/api/openapi.json](http://localhost:8080/api/openapi.json) and
+[/api/openapi.yaml](http://localhost:8080/api/openapi.yaml).
+
+* `io.swagger.core.v3:swagger-jaxrs2`
+* `io.swagger.core.v3:swagger-jaxrs2-servlet-initializer-v2`
+
+### Swagger UI
+
+This is distinct from the OpenAPI feature.  The former merely generates the
+OpenAPI document and endpoint.  Swagger UI provides the HTML and CSS and JS seen
+when visiting [/webjars/swagger-ui/index.html](http://localhost:8080/webjars/swagger-ui/index.html?url=http://localhost:8080/api/openapi.json).  Swagger UI is incredibly
+useful for development and debugging, but inappropriate to include in a production
+service.
+
+* `org.webjars:swagger-ui`
+* `org.webjars:webjars-locator-core`
+
+The `webjars-locator-core` dependency enables accessing the Swagger UI resources without the
+version number in the URL.

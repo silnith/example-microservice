@@ -16,6 +16,13 @@ import io.swagger.v3.oas.annotations.info.Info;
 
 /**
  * The main class of the application when run stand-alone.  This can also be run as a servlet.
+ * 
+ * <p>This class is in the root package for the service so that all the packages under it get
+ * scanned for dependency injection.  This happens automatically as part of the
+ * {@link SpringBootApplication} annotation auto-configuration.
+ * 
+ * <p>The {@link OpenAPIDefinition} annotation adds documentation to the generated OpenAPI document.
+ * The annotation is here because its contents apply to the entire service.
  */
 @OpenAPIDefinition(info = @Info(
         title = "Example Microservice",
