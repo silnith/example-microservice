@@ -13,6 +13,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.silnith.example.microservice.data.TransactionProvider;
@@ -34,8 +35,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
  * configuration class, {@link org.silnith.example.microservice.jersey.JerseyConfig}.
  */
 @Path("transaction")
-@Consumes({"application/json", "application/xml"})
-@Produces({"application/json", "application/xml"})
+@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 public class TransactionController {
     
     private static final String sourceClass = TransactionController.class.getName();
@@ -123,7 +124,7 @@ public class TransactionController {
             responses = {
                     @ApiResponse(responseCode = "200", description = "The transaction was found.", content = {
                             @Content(
-                                    mediaType = "application/json",
+                                    mediaType = MediaType.APPLICATION_JSON,
                                     schema = @Schema(implementation = TransactionDetails.class),
                                     examples = {
                                             @ExampleObject(
@@ -133,7 +134,7 @@ public class TransactionController {
                                                     value = "{\"id\":\"foobar\",\"domain\":\"eureka\",\"region\":\"sadness\",\"count\":20,\"created\":\"2020-01-01T12:00:00.000Z\"}"),
                                     }),
                             @Content(
-                                    mediaType = "application/xml",
+                                    mediaType = MediaType.APPLICATION_XML,
                                     schema = @Schema(implementation = TransactionDetails.class),
                                     examples = {
                                             @ExampleObject(
