@@ -24,6 +24,13 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <dependency-check.skip>true</dependency-check.skip>
 	</properties>
+	<licenses>
+		<license>
+			<name>GPL-3.0-or-later</name>
+			<url>https://www.gnu.org/licenses/gpl-3.0-standalone.html</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
     <organization>
         <name>Silnith.org</name>
     </organization>
