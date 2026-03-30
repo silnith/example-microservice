@@ -53,8 +53,8 @@ jobs:
       artifact-pattern: java-target
       artifact-path: .
       test-result-files: |
-        java/solitaire/**/target/surefire-reports/TEST-*.xml
-        java/solitaire/**/target/failsafe-reports/TEST-*.xml
+        target/surefire-reports/TEST-*.xml
+        target/failsafe-reports/TEST-*.xml
     secrets: inherit
     permissions:
       checks: write
