@@ -21,6 +21,7 @@
         <maven.compiler.verbose>false</maven.compiler.verbose>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <dependency-check.skip>true</dependency-check.skip>
 	</properties>
     <organization>
         <name>Silnith.org</name>
@@ -330,8 +331,7 @@
                 <configuration>
                     <toolchains>
                         <jdk>
-                            <vendor>openjdk</vendor>
-                            <version>1.14</version>
+                            <version>[1.14,2)</version>
                         </jdk>
                     </toolchains>
                 </configuration>

@@ -1,0 +1,60 @@
+name: Push Branch
+
+on:
+  push:
+    branches:
+      - '*'
+
+env: {}
+
+jobs:
+  get-date:
+    name: Date
+    uses: silnith/github-workflows/.github/workflows/bash-get-date.yaml@main
+
+  maven-cache:
+    name: Maven Cache
+    needs:
+      - get-date
+    uses: silnith/github-workflows/.github/workflows/maven-cache-dependencies.yaml@main
+    with:
+      directory: .
+      java-version: 17
+      year: ${{ needs.get-date.outputs.year }}
+      month: ${{ needs.get-date.outputs.month }}
+      day: ${{ needs.get-date.outputs.day }}
+    secrets: inherit
+    permissions:
+      contents: read
+  maven-build:
+    name: Maven
+    needs:
+      - get-date
+      - maven-cache
+    uses: silnith/github-workflows/.github/workflows/maven-verify.yaml@main
+    with:
+      artifact-prefix: java
+      directory: .
+      java-version: 17
+      year: ${{ needs.get-date.outputs.year }}
+      month: ${{ needs.get-date.outputs.month }}
+      day: ${{ needs.get-date.outputs.day }}
+    secrets: inherit
+    permissions:
+      contents: read
+      checks: write
+  maven-test-results:
+    name: Publish Maven Test Results
+    needs:
+      - maven-build
+    uses: silnith/github-workflows/.github/workflows/publish-test-results.yaml@main
+    with:
+      check-name: Test Results
+      artifact-pattern: java-target
+      artifact-path: .
+      test-result-files: |
+        java/solitaire/**/target/surefire-reports/TEST-*.xml
+        java/solitaire/**/target/failsafe-reports/TEST-*.xml
+    secrets: inherit
+    permissions:
+      checks: write
