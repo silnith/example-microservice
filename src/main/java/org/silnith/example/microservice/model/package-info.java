@@ -16,7 +16,8 @@
  * <li>{@code spring.jersey.type=filter}</li>
  * </ol>
  * 
- * <p>The Java Validation API is enabled by including the {@code foo} Maven dependency, and also
- * having a Java Validation API implementation loaded.  By default {@code foo} is used.
+ * <p>The Java Validation API is enabled by including the {@code org.springframework.boot:spring-boot-starter-validation}
+ * Maven dependency, and also having a Java Validation API implementation loaded.
+ * By default {@code org.hibernate.validator:hibernate-validator} is used.
  */
 package org.silnith.example.microservice.model;
