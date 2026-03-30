@@ -15,6 +15,7 @@
 	<name>Example Microservice</name>
     <url>https://github.com/silnith/example-microservice</url>
 	<description>An example template for how to do microservices well.</description>
+    <inceptionYear>2018</inceptionYear>
 	<properties>
         <maven.compiler.release>8</maven.compiler.release>
         <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
@@ -33,6 +34,7 @@
 	</licenses>
     <organization>
         <name>Silnith.org</name>
+        <url>https://silnith.org</url>
     </organization>
     <scm>
         <url>https://github.com/silnith/example-microservice</url>
