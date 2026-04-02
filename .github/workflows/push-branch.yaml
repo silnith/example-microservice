@@ -14,6 +14,9 @@ jobs:
 
   maven-cache:
     name: Maven Cache
+    permissions:
+      contents: read
+      packages: read
     needs:
       - get-date
     uses: silnith/github-workflows/.github/workflows/maven-cache-dependencies.yaml@main
@@ -23,10 +26,11 @@ jobs:
       month: ${{ needs.get-date.outputs.month }}
       day: ${{ needs.get-date.outputs.day }}
     secrets: inherit
+  maven-verify:
+    name: Maven
     permissions:
       contents: read
-  maven-build:
-    name: Maven
+      packages: read
     needs:
       - get-date
       - maven-cache
@@ -37,13 +41,12 @@ jobs:
       month: ${{ needs.get-date.outputs.month }}
       day: ${{ needs.get-date.outputs.day }}
     secrets: inherit
-    permissions:
-      contents: read
-      checks: write
   maven-test-results:
-    name: Publish Maven Test Results
+    name: Maven Test Results
+    permissions:
+      checks: write
     needs:
-      - maven-build
+      - maven-verify
     uses: silnith/github-workflows/.github/workflows/publish-test-results.yaml@main
     with:
       check-name: Test Results
@@ -52,5 +55,4 @@ jobs:
         target/surefire-reports/TEST-*.xml
         target/failsafe-reports/TEST-*.xml
     secrets: inherit
-    permissions:
-      checks: write
+    
