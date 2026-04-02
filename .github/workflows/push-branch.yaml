@@ -10,7 +10,7 @@ env: {}
 jobs:
   get-date:
     name: Date
-    uses: silnith/github-workflows/.github/workflows/bash-get-date.yaml@main
+    uses: silnith/github-workflows/.github/workflows/bash-get-date.yaml@update-node
 
   maven-cache:
     name: Maven Cache
@@ -19,7 +19,7 @@ jobs:
       packages: read
     needs:
       - get-date
-    uses: silnith/github-workflows/.github/workflows/maven-cache-dependencies.yaml@main
+    uses: silnith/github-workflows/.github/workflows/maven-cache-dependencies.yaml@update-node
     with:
       java-version: 17
       year: ${{ needs.get-date.outputs.year }}
@@ -34,7 +34,7 @@ jobs:
     needs:
       - get-date
       - maven-cache
-    uses: silnith/github-workflows/.github/workflows/maven-verify.yaml@main
+    uses: silnith/github-workflows/.github/workflows/maven-verify.yaml@update-node
     with:
       java-version: 17
       year: ${{ needs.get-date.outputs.year }}
@@ -47,7 +47,7 @@ jobs:
       checks: write
     needs:
       - maven-verify
-    uses: silnith/github-workflows/.github/workflows/publish-test-results.yaml@main
+    uses: silnith/github-workflows/.github/workflows/publish-test-results.yaml@update-node
     with:
       check-name: Test Results
       artifact-pattern: maven-target
