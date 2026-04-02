@@ -18,7 +18,6 @@ jobs:
       - get-date
     uses: silnith/github-workflows/.github/workflows/maven-cache-dependencies.yaml@main
     with:
-      directory: .
       java-version: 17
       year: ${{ needs.get-date.outputs.year }}
       month: ${{ needs.get-date.outputs.month }}
@@ -33,8 +32,6 @@ jobs:
       - maven-cache
     uses: silnith/github-workflows/.github/workflows/maven-verify.yaml@main
     with:
-      artifact-prefix: java
-      directory: .
       java-version: 17
       year: ${{ needs.get-date.outputs.year }}
       month: ${{ needs.get-date.outputs.month }}
@@ -50,8 +47,7 @@ jobs:
     uses: silnith/github-workflows/.github/workflows/publish-test-results.yaml@main
     with:
       check-name: Test Results
-      artifact-pattern: java-target
-      artifact-path: .
+      artifact-pattern: maven-target
       test-result-files: |
         target/surefire-reports/TEST-*.xml
         target/failsafe-reports/TEST-*.xml
